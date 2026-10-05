@@ -37,6 +37,14 @@ Tres archivos, los tres van juntos:
    El ejecutable va con setuid root (4755): trabaja con privilegios sin pedir
    contraseña. Aparece también en el menú de aplicaciones del escritorio.
 
+> **Nota (si instalas en un Tiny Core ya arrancado):** la primera conexión de
+> un perfil con DNS puede fallar con `resolvconf: signature mismatch:
+> /etc/resolv.conf`, porque el `resolv.conf` que escribió el DHCP no lleva la
+> firma de resolvconf (el paquete aún no estaba instalado al arrancar). Se
+> corrige una sola vez ejecutando `sudo resolvconf -u` y renovando el DHCP;
+> después conecta sin problema. En sistemas donde el paquete ya está desde el
+> arranque (como la ISO flinux-jc) esto no ocurre.
+
 ## Qué trae dentro el paquete (por eso el `.dep` va vacío)
 
 - El binario `flconnect` 1.0-4 (i686, setuid root).
