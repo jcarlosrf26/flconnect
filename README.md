@@ -11,12 +11,18 @@ se solicitan al conectar de forma segura.
 
 ## Descarga (Release v1.0-4)
 
-Tres archivos, los tres van juntos:
+Archivos del Release (el paquete es el mismo que va preinstalado en la ISO
+**FLinux-JC v1.5**):
 
-- `flconnect.tcz` — la extensión autocontenida (10 MB).
-- `flconnect.tcz.dep` — lista de dependencias: **vacía a propósito** (0 bytes),
-  el paquete no depende de ninguna otra extensión del repositorio.
+- `flconnect.tcz` — la extensión autocontenida (10 715 136 bytes).
+  **MD5:** `04bd082430d22ed7b20fef3213b9833f`
 - `flconnect.tcz.md5.txt` — suma MD5 del `.tcz` para comprobar la descarga.
+- `flconnect-1.0-4-tinycore32.zip` — los tres archivos juntos (incluye el
+  `flconnect.tcz.dep`).
+- `flconnect.tcz.dep` — lista de dependencias: **vacía a propósito** (0 bytes),
+  el paquete no depende de ninguna otra extensión del repositorio. GitHub no
+  admite adjuntos de 0 bytes, por eso `flconnect.tcz.dep` está en la raíz de
+  este repositorio y dentro del ZIP.
 
 ## Instalación en Tiny Core 17.1 x86 (32 bits)
 
@@ -31,11 +37,16 @@ Tres archivos, los tres van juntos:
 3. Ejecuta:
 
    ```
-   flconnect
+   sudo flconnect
    ```
 
-   El ejecutable va con setuid root (4755): trabaja con privilegios sin pedir
-   contraseña. Aparece también en el menú de aplicaciones del escritorio.
+   Aunque el ejecutable va con setuid root (4755), hay que lanzarlo con
+   `sudo` —la entrada del menú y del wbar ya usa
+   `Exec=sudo /usr/local/bin/flconnect`—: así el proceso queda con
+   `HOME=/root` y ve los perfiles guardados en `/root/.flconnect/profiles/`.
+   Ejecutado a secas como el usuario `tc`, trabajaría con `HOME=/home/tc` y
+   la lista de perfiles saldría vacía. Aparece también en el menú de
+   aplicaciones del escritorio.
 
 > **Nota (si instalas en un Tiny Core ya arrancado):** la primera conexión de
 > un perfil con DNS puede fallar con `resolvconf: signature mismatch:
